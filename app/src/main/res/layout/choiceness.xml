@@ -1,26 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@mipmap/bg_colorful"
-    >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:background="#e20404"
-        android:layout_height="47dp"
-        android:layout_gravity="center"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="精选"
-            android:textColor="#ffffff"
-            android:textSize="16dp" />
+    android:background="@mipmap/bg_colorful">
 
-    </RelativeLayout>
-</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.stx.xhb.xbanner.XBanner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <EditText
+                android:id="@+id/choiceness_edidtext"
+                android:layout_width="220dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="75dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/my_title_edittext_shape" />
+        </com.stx.xhb.xbanner.XBanner>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp">
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:background="#8eea8b" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="精彩推荐"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/choiceness_rec"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="false" />
+    </LinearLayout>
+</ScrollView>
