@@ -1,5 +1,6 @@
 package com.example.dell.sixlive.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -7,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.dell.sixlive.Bean.ChoicenessBean;
 import com.example.dell.sixlive.Bean.LoadurlBean;
+import com.example.dell.sixlive.Bean.WelfareBean;
 import com.example.dell.sixlive.Persenter.ChoicenessPersenter;
 import com.example.dell.sixlive.R;
 import com.example.dell.sixlive.View.Fragment.Choiceness;
@@ -20,6 +22,7 @@ public class MainActivity extends BaseActivity<ChoicenessPersenter> implements I
 
     private BottomTabBar boottomTabBar;
     private LinearLayout xiazai;
+    private LinearLayout welfare;
 
 
     @Override
@@ -30,6 +33,7 @@ public class MainActivity extends BaseActivity<ChoicenessPersenter> implements I
     @Override
     protected void initView() {
         boottomTabBar = findViewById(R.id.boottomTabBar);
+        welfare = findViewById(R.id.main_Welfare);
         xiazai = findViewById(R.id.main_xiazai);
         boottomTabBar.init(getSupportFragmentManager())
                 .setImgSize(70, 70)
@@ -51,6 +55,13 @@ public class MainActivity extends BaseActivity<ChoicenessPersenter> implements I
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "敬请期待", Toast.LENGTH_SHORT).show();
+            }
+        });
+        welfare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, WelfareActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -82,6 +93,16 @@ public class MainActivity extends BaseActivity<ChoicenessPersenter> implements I
 
     @Override
     public void shibaiurl(String msg) {
+
+    }
+
+    @Override
+    public void chenggongwelf(WelfareBean bean) {
+
+    }
+
+    @Override
+    public void shibaiwelf(String msg) {
 
     }
 

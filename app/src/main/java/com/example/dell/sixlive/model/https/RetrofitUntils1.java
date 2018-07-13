@@ -14,20 +14,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by nyj on 2018/5/26.
  */
 
-public class RetrofitUntils {
+public class RetrofitUntils1 {
 
 
+    //单列模式
+    private static RetrofitUntils1 INSTANCE;
     private OkHttpClient client;
-    private  Retrofit retrofit;
+    private Retrofit retrofit;
 
-    private RetrofitUntils() {
+    private RetrofitUntils1() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         client = new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .build();
         retrofit = new Retrofit.Builder()
-                .baseUrl(Constant.baseUrl)
+                .baseUrl(Constant.baseUrl1)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -35,14 +37,11 @@ public class RetrofitUntils {
 
     }
 
-    //单列模式
-    private static RetrofitUntils INSTANCE;
-
-    public static RetrofitUntils getInsatnce() {
+    public static RetrofitUntils1 getInsatnce() {
         if (INSTANCE == null) {
-            synchronized (RetrofitUntils.class) {
+            synchronized (RetrofitUntils1.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new RetrofitUntils();
+                    INSTANCE = new RetrofitUntils1();
                 }
             }
         }

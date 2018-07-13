@@ -15,6 +15,28 @@ import java.util.List;
 public class BriefintroductionAdater extends RecyclerView.Adapter<BriefintroductionAdater.Holder> {
     private List<LoadurlBean.RetBean.ListBean> list;
     private Context context;
+    private setOnlisenner setOnLisenner;
+    private String loadURL;
+
+    public void setSetOnLisenner(setOnlisenner setOnLisenner) {
+        this.setOnLisenner = setOnLisenner;
+    }
+
+    @Override
+    public void onBindViewHolder(Holder holder, final int position) {
+        String pic = list.get(0).getChildList().get(position).getPic();
+        String title = list.get(0).getChildList().get(position).getTitle();
+
+        holder.im.setImageURI(pic);
+        holder.tv.setText(title);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadURL = list.get(0).getChildList().get(position).getLoadURL();
+                setOnLisenner.setOnitem(position, view, loadURL);
+            }
+        });
+    }
 
     public BriefintroductionAdater(List<LoadurlBean.RetBean.ListBean> list, Context context) {
         this.list = list;
@@ -29,12 +51,8 @@ public class BriefintroductionAdater extends RecyclerView.Adapter<Briefintroduct
         return holder;
     }
 
-    @Override
-    public void onBindViewHolder(Holder holder, int position) {
-        String pic = list.get(0).getChildList().get(position).getPic();
-        String title = list.get(0).getChildList().get(position).getTitle();
-        holder.im.setImageURI(pic);
-        holder.tv.setText(title);
+    public interface setOnlisenner {
+        void setOnitem(int i, View view, String loadURL);
     }
 
     @Override

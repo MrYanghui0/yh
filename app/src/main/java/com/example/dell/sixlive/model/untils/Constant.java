@@ -6,4 +6,5 @@ package com.example.dell.sixlive.model.untils;
 
 public interface Constant {
      String baseUrl="http://api.svipmovie.com/";
+    String baseUrl1 = "http://gank.io/";
 }

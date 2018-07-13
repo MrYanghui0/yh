@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
@@ -12,9 +11,11 @@ import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.dell.sixlive.Activity.ParticularsActivity;
 import com.example.dell.sixlive.Adater.BriefintroductionAdater;
 import com.example.dell.sixlive.Bean.ChoicenessBean;
 import com.example.dell.sixlive.Bean.LoadurlBean;
+import com.example.dell.sixlive.Bean.WelfareBean;
 import com.example.dell.sixlive.Persenter.LoadUrlPresenter;
 import com.example.dell.sixlive.R;
 import com.example.dell.sixlive.View.Fragment.BaseHot;
@@ -107,10 +108,7 @@ public class BriefIntroduction extends BaseHot<LoadUrlPresenter> implements IVie
     protected void initData() {
         Intent intent = getActivity().getIntent();
         loadURL = intent.getStringExtra("loadURL");
-        String[] split = loadURL.split("=");
-        a = split[1];
-        Log.e("AA", a);
-        BasePresenter.loadloadurl(a);
+        BasePresenter.loadloadurl(loadURL);
     }
 
     @Override
@@ -145,11 +143,31 @@ public class BriefIntroduction extends BaseHot<LoadUrlPresenter> implements IVie
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         rec.setLayoutManager(gridLayoutManager);
         rec.setAdapter(briefintroductionAdater1);
+        briefintroductionAdater1.setSetOnLisenner(new BriefintroductionAdater.setOnlisenner() {
+            @Override
+            public void setOnitem(int i, View view, String loadURL) {
+                Intent intent = new Intent(getActivity(), ParticularsActivity.class);
+                String[] split = loadURL.split("=");
+                a = split[1];
+                intent.putExtra("loadURL", a);
+                startActivity(intent);
+            }
+        });
 
     }
 
     @Override
     public void shibaiurl(String msg) {
+
+    }
+
+    @Override
+    public void chenggongwelf(WelfareBean bean) {
+
+    }
+
+    @Override
+    public void shibaiwelf(String msg) {
 
     }
 

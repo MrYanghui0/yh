@@ -46,9 +46,11 @@ public class ChoicenessAdater extends RecyclerView.Adapter<ChoicenessAdater.Hold
             @Override
             public void onClick(View view) {
                 String loadURL = list.get(2).getChildList().get(position).getLoadURL();
+
                 setOnLisenner.setOnitem(position, view, loadURL);
             }
         });
+
     }
 
     @Override

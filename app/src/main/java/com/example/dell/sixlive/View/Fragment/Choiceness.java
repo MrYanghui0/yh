@@ -16,6 +16,7 @@ import com.example.dell.sixlive.Activity.SearchActivity;
 import com.example.dell.sixlive.Adater.ChoicenessAdater;
 import com.example.dell.sixlive.Bean.ChoicenessBean;
 import com.example.dell.sixlive.Bean.LoadurlBean;
+import com.example.dell.sixlive.Bean.WelfareBean;
 import com.example.dell.sixlive.Persenter.ChoicenessPersenter;
 import com.example.dell.sixlive.R;
 import com.example.dell.sixlive.View.IView;
@@ -35,7 +36,8 @@ public class Choiceness extends BaseHot<ChoicenessPersenter> implements IView, X
     private RecyclerView rec;
     private String loadURL1;
     private EditText edidtext;
-
+    private String a;
+    private List<ChoicenessBean.RetBean.ListBean> data;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,17 +83,17 @@ public class Choiceness extends BaseHot<ChoicenessPersenter> implements IView, X
 
     @Override
     public void chenggong(ChoicenessBean bean) {
-        List<ChoicenessBean.RetBean.ListBean> data = bean.getRet().getList();
+        data = bean.getRet().getList();
 
         list = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             String icon = data.get(0).getChildList().get(i).getPic();
-            loadURL1 = data.get(0).getChildList().get(i).getLoadURL();
-            if (icon.equals("")) {
+
+            if (icon == null) {
                 list.remove(i);
-            } else {
-                this.list.add(icon);
             }
+                this.list.add(icon);
+
 
         }
         banner.setData(list, null);
@@ -101,8 +103,12 @@ public class Choiceness extends BaseHot<ChoicenessPersenter> implements IView, X
         banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, int position) {
+                loadURL1 = data.get(0).getChildList().get(position).getLoadURL();
                 Intent intent = new Intent(getActivity(), ParticularsActivity.class);
-                intent.putExtra("loadURL1", loadURL1);
+                String[] split = loadURL1.split("=");
+                a = split[1];
+                intent.putExtra("loadURL", a);
+
                 startActivity(intent);
             }
         });
@@ -115,7 +121,9 @@ public class Choiceness extends BaseHot<ChoicenessPersenter> implements IView, X
             @Override
             public void setOnitem(int i, View view, String loadURL) {
                 Intent intent = new Intent(getActivity(), ParticularsActivity.class);
-                intent.putExtra("loadURL", loadURL);
+                String[] split = loadURL.split("=");
+                a = split[1];
+                intent.putExtra("loadURL", a);
                 startActivity(intent);
             }
         });
@@ -133,6 +141,16 @@ public class Choiceness extends BaseHot<ChoicenessPersenter> implements IView, X
 
     @Override
     public void shibaiurl(String msg) {
+
+    }
+
+    @Override
+    public void chenggongwelf(WelfareBean bean) {
+
+    }
+
+    @Override
+    public void shibaiwelf(String msg) {
 
     }
 

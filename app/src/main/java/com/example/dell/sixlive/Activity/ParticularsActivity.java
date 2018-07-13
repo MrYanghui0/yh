@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.dell.sixlive.Bean.ChoicenessBean;
 import com.example.dell.sixlive.Bean.LoadurlBean;
+import com.example.dell.sixlive.Bean.WelfareBean;
 import com.example.dell.sixlive.Persenter.LoadUrlPresenter;
 import com.example.dell.sixlive.R;
 import com.example.dell.sixlive.View.Fragment.ChoicenessFragment.BriefIntroduction;
@@ -41,8 +41,6 @@ public class ParticularsActivity extends BaseActivity<LoadUrlPresenter> implemen
     private ViewPager viewpager;
     private String[] tab = {"简介", "评论"};
     private List<Fragment> list;
-    private ArrayList<String> list_path;
-    private ArrayList<String> list_title;
     private TextView tv;
     private ImageView iv;
     private ImageView fanhui;
@@ -52,10 +50,8 @@ public class ParticularsActivity extends BaseActivity<LoadUrlPresenter> implemen
 
         Intent intent = getIntent();
         loadURL = intent.getStringExtra("loadURL");
-        String[] split = loadURL.split("=");
-        a = split[1];
-        Log.e("AA", a);
-        BasePresenter.loadloadurl(a);
+
+        BasePresenter.loadloadurl(loadURL);
     }
 
     @Override
@@ -153,6 +149,16 @@ public class ParticularsActivity extends BaseActivity<LoadUrlPresenter> implemen
 
     }
 
+    @Override
+    public void chenggongwelf(WelfareBean bean) {
+
+    }
+
+    @Override
+    public void shibaiwelf(String msg) {
+
+    }
+
 
     @Override
     protected void onPause() {
@@ -236,7 +242,6 @@ public class ParticularsActivity extends BaseActivity<LoadUrlPresenter> implemen
             }
         });
     }
-
     class MyVpAdapter extends FragmentPagerAdapter {
 
 
@@ -258,5 +263,7 @@ public class ParticularsActivity extends BaseActivity<LoadUrlPresenter> implemen
         public CharSequence getPageTitle(int position) {
             return tab[position];
         }
+
     }
+
 }

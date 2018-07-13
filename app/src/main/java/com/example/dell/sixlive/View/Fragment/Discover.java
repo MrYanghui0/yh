@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.example.dell.sixlive.Bean.ChoicenessBean;
 import com.example.dell.sixlive.Bean.LoadurlBean;
+import com.example.dell.sixlive.Bean.WelfareBean;
 import com.example.dell.sixlive.Persenter.ChoicenessPersenter;
 import com.example.dell.sixlive.R;
 import com.example.dell.sixlive.View.IView;
@@ -55,6 +56,16 @@ public class Discover extends BaseHot<ChoicenessPersenter> implements IView {
 
     @Override
     public void shibaiurl(String msg) {
+
+    }
+
+    @Override
+    public void chenggongwelf(WelfareBean bean) {
+
+    }
+
+    @Override
+    public void shibaiwelf(String msg) {
 
     }
 
